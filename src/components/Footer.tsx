@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { GraduationCap, Mail, Phone, MapPin, Facebook, Twitter, Youtube } from 'lucide-react';
+import { Heart, Mail, Phone, MapPin, Facebook, Twitter, Youtube, Instagram } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
@@ -10,16 +10,16 @@ export const Footer: React.FC = () => {
           {/* Organization Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="bg-blue-700 p-2 rounded-lg">
-                <GraduationCap className="h-6 w-6 text-white" />
+              <div className="bg-red-600 p-2 rounded-lg">
+                <Heart className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h3 className="text-lg font-bold">FourSquare Education</h3>
-                <p className="text-sm text-gray-300">Agency</p>
+                <h3 className="text-lg font-bold">Foursquare Mission</h3>
+                <p className="text-sm text-gray-300">Health Services</p>
               </div>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">
-              Empowering the next generation through Christ-centered education across Papua New Guinea's Enga Province.
+              Bringing hope and healing to communities worldwide through Christ-centered healthcare and medical missions.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-300 hover:text-white transition-colors">
@@ -27,6 +27,9 @@ export const Footer: React.FC = () => {
               </a>
               <a href="#" className="text-gray-300 hover:text-white transition-colors">
                 <Twitter className="h-5 w-5" />
+              </a>
+              <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                <Instagram className="h-5 w-5" />
               </a>
               <a href="#" className="text-gray-300 hover:text-white transition-colors">
                 <Youtube className="h-5 w-5" />
@@ -41,14 +44,14 @@ export const Footer: React.FC = () => {
               <Link to="/about" className="block text-gray-300 hover:text-white transition-colors">
                 About Us
               </Link>
-              <Link to="/institutions" className="block text-gray-300 hover:text-white transition-colors">
-                Our Institutions
+              <Link to="/services" className="block text-gray-300 hover:text-white transition-colors">
+                Our Services
               </Link>
-              <Link to="/programs" className="block text-gray-300 hover:text-white transition-colors">
-                Programs
+              <Link to="/locations" className="block text-gray-300 hover:text-white transition-colors">
+                Locations
               </Link>
-              <Link to="/admissions" className="block text-gray-300 hover:text-white transition-colors">
-                Admissions
+              <Link to="/get-involved" className="block text-gray-300 hover:text-white transition-colors">
+                Get Involved
               </Link>
               <Link to="/news-events" className="block text-gray-300 hover:text-white transition-colors">
                 News & Events
@@ -59,24 +62,24 @@ export const Footer: React.FC = () => {
             </nav>
           </div>
 
-          {/* Our Institutions */}
+          {/* Our Services */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Our Institutions</h4>
+            <h4 className="text-lg font-semibold mb-4">Our Services</h4>
             <nav className="space-y-2">
-              <Link to="/institutions/wapenamanda-international" className="block text-gray-300 hover:text-white transition-colors text-sm">
-                Wapenamanda International Christian School
+              <Link to="/services/medical-missions" className="block text-gray-300 hover:text-white transition-colors text-sm">
+                Medical Missions
               </Link>
-              <Link to="/institutions/wapenamanda-secondary" className="block text-gray-300 hover:text-white transition-colors text-sm">
-                Wapenamanda FourSquare Secondary
+              <Link to="/services/community-health" className="block text-gray-300 hover:text-white transition-colors text-sm">
+                Community Health Programs
               </Link>
-              <Link to="/institutions/kungumanda-chw" className="block text-gray-300 hover:text-white transition-colors text-sm">
-                Kungumanda CHW Training School
+              <Link to="/services/emergency-response" className="block text-gray-300 hover:text-white transition-colors text-sm">
+                Emergency Response
               </Link>
-              <Link to="/institutions/kumbas-vocational" className="block text-gray-300 hover:text-white transition-colors text-sm">
-                Kumbas Vocational Centre
+              <Link to="/services/health-education" className="block text-gray-300 hover:text-white transition-colors text-sm">
+                Health Education & Training
               </Link>
-              <Link to="/institutions/one-way-bible" className="block text-gray-300 hover:text-white transition-colors text-sm">
-                One Way Bible College
+              <Link to="/services/mobile-clinics" className="block text-gray-300 hover:text-white transition-colors text-sm">
+                Mobile Clinics
               </Link>
             </nav>
           </div>
@@ -88,17 +91,18 @@ export const Footer: React.FC = () => {
               <div className="flex items-start space-x-3">
                 <MapPin className="h-5 w-5 text-gray-400 mt-0.5 flex-shrink-0" />
                 <p className="text-gray-300 text-sm">
-                  Wapenamanda, Enga Province<br />
-                  Papua New Guinea
+                  1910 W. Sunset Blvd, Suite 200<br />
+                  Los Angeles, CA 90026<br />
+                  United States
                 </p>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-gray-400 flex-shrink-0" />
-                <p className="text-gray-300 text-sm">+675 547 1234</p>
+                <p className="text-gray-300 text-sm">+1 (213) 989-4234</p>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-gray-400 flex-shrink-0" />
-                <p className="text-gray-300 text-sm">info@foursquareeducation.pg</p>
+                <p className="text-gray-300 text-sm">health@foursquaremissions.org</p>
               </div>
             </div>
           </div>
@@ -107,7 +111,7 @@ export const Footer: React.FC = () => {
         <div className="border-t border-gray-800 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              © 2024 FourSquare Education Agency. All rights reserved.
+              © 2024 Foursquare Mission Agency Health Services. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">

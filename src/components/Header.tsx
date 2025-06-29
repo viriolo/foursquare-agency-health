@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, GraduationCap, ChevronDown } from 'lucide-react';
+import { Menu, X, Heart, ChevronDown } from 'lucide-react';
 
 export const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isInstitutionsOpen, setIsInstitutionsOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const location = useLocation();
 
   const isActive = (path: string) => location.pathname === path;
 
-  const institutions = [
-    { name: 'Wapenamanda International Christian School', slug: 'wapenamanda-international' },
-    { name: 'Wapenamanda FourSquare Secondary School', slug: 'wapenamanda-secondary' },
-    { name: 'Kungumanda CHW Training School', slug: 'kungumanda-chw' },
-    { name: 'Kumbas Vocational Centre', slug: 'kumbas-vocational' },
-    { name: 'One Way Bible College', slug: 'one-way-bible' },
+  const services = [
+    { name: 'Medical Missions', slug: 'medical-missions' },
+    { name: 'Community Health Programs', slug: 'community-health' },
+    { name: 'Emergency Response', slug: 'emergency-response' },
+    { name: 'Health Education & Training', slug: 'health-education' },
+    { name: 'Mobile Clinics', slug: 'mobile-clinics' },
   ];
 
   return (
@@ -23,12 +23,12 @@ export const Header: React.FC = () => {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
-            <div className="bg-blue-700 p-2 rounded-lg">
-              <GraduationCap className="h-8 w-8 text-white" />
+            <div className="bg-red-600 p-2 rounded-lg">
+              <Heart className="h-8 w-8 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-gray-900">FourSquare Education</h1>
-              <p className="text-sm text-gray-600">Agency</p>
+              <h1 className="text-xl font-bold text-gray-900">Foursquare Mission Agency</h1>
+              <p className="text-sm text-gray-600">Health Services</p>
             </div>
           </Link>
 
@@ -37,7 +37,7 @@ export const Header: React.FC = () => {
             <Link
               to="/"
               className={`text-sm font-medium transition-colors ${
-                isActive('/') ? 'text-blue-700' : 'text-gray-700 hover:text-blue-700'
+                isActive('/') ? 'text-red-600' : 'text-gray-700 hover:text-red-600'
               }`}
             >
               Home
@@ -45,45 +45,45 @@ export const Header: React.FC = () => {
             <Link
               to="/about"
               className={`text-sm font-medium transition-colors ${
-                isActive('/about') ? 'text-blue-700' : 'text-gray-700 hover:text-blue-700'
+                isActive('/about') ? 'text-red-600' : 'text-gray-700 hover:text-red-600'
               }`}
             >
               About Us
             </Link>
             
-            {/* Institutions Dropdown */}
+            {/* Services Dropdown */}
             <div className="relative">
               <button
-                onMouseEnter={() => setIsInstitutionsOpen(true)}
-                onMouseLeave={() => setIsInstitutionsOpen(false)}
+                onMouseEnter={() => setIsServicesOpen(true)}
+                onMouseLeave={() => setIsServicesOpen(false)}
                 className={`flex items-center text-sm font-medium transition-colors ${
-                  location.pathname.startsWith('/institutions') ? 'text-blue-700' : 'text-gray-700 hover:text-blue-700'
+                  location.pathname.startsWith('/services') ? 'text-red-600' : 'text-gray-700 hover:text-red-600'
                 }`}
               >
-                Institutions
+                Services
                 <ChevronDown className="ml-1 h-4 w-4" />
               </button>
               
-              {isInstitutionsOpen && (
+              {isServicesOpen && (
                 <div
-                  onMouseEnter={() => setIsInstitutionsOpen(true)}
-                  onMouseLeave={() => setIsInstitutionsOpen(false)}
+                  onMouseEnter={() => setIsServicesOpen(true)}
+                  onMouseLeave={() => setIsServicesOpen(false)}
                   className="absolute top-full left-0 mt-2 w-80 bg-white rounded-lg shadow-xl border py-2 z-50"
                 >
                   <Link
-                    to="/institutions"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700"
+                    to="/services"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600"
                   >
-                    All Institutions
+                    All Services
                   </Link>
                   <hr className="my-2" />
-                  {institutions.map((institution) => (
+                  {services.map((service) => (
                     <Link
-                      key={institution.slug}
-                      to={`/institutions/${institution.slug}`}
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700"
+                      key={service.slug}
+                      to={`/services/${service.slug}`}
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600"
                     >
-                      {institution.name}
+                      {service.name}
                     </Link>
                   ))}
                 </div>
@@ -91,25 +91,25 @@ export const Header: React.FC = () => {
             </div>
 
             <Link
-              to="/programs"
+              to="/locations"
               className={`text-sm font-medium transition-colors ${
-                isActive('/programs') ? 'text-blue-700' : 'text-gray-700 hover:text-blue-700'
+                isActive('/locations') ? 'text-red-600' : 'text-gray-700 hover:text-red-600'
               }`}
             >
-              Programs
+              Locations
             </Link>
             <Link
-              to="/admissions"
+              to="/get-involved"
               className={`text-sm font-medium transition-colors ${
-                isActive('/admissions') ? 'text-blue-700' : 'text-gray-700 hover:text-blue-700'
+                isActive('/get-involved') ? 'text-red-600' : 'text-gray-700 hover:text-red-600'
               }`}
             >
-              Admissions
+              Get Involved
             </Link>
             <Link
               to="/news-events"
               className={`text-sm font-medium transition-colors ${
-                isActive('/news-events') ? 'text-blue-700' : 'text-gray-700 hover:text-blue-700'
+                isActive('/news-events') ? 'text-red-600' : 'text-gray-700 hover:text-red-600'
               }`}
             >
               News & Events
@@ -117,7 +117,7 @@ export const Header: React.FC = () => {
             <Link
               to="/impact-partners"
               className={`text-sm font-medium transition-colors ${
-                isActive('/impact-partners') ? 'text-blue-700' : 'text-gray-700 hover:text-blue-700'
+                isActive('/impact-partners') ? 'text-red-600' : 'text-gray-700 hover:text-red-600'
               }`}
             >
               Impact & Partners
@@ -125,7 +125,7 @@ export const Header: React.FC = () => {
             <Link
               to="/contact"
               className={`text-sm font-medium transition-colors ${
-                isActive('/contact') ? 'text-blue-700' : 'text-gray-700 hover:text-blue-700'
+                isActive('/contact') ? 'text-red-600' : 'text-gray-700 hover:text-red-600'
               }`}
             >
               Contact
@@ -134,16 +134,16 @@ export const Header: React.FC = () => {
             {/* CTA Buttons */}
             <div className="flex items-center space-x-4 ml-6">
               <Link
-                to="/admissions"
-                className="bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-800 transition-colors"
+                to="/get-involved"
+                className="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-red-700 transition-colors"
               >
-                Apply Now
+                Volunteer
               </Link>
               <Link
                 to="/impact-partners"
-                className="bg-amber-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-amber-700 transition-colors"
+                className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
               >
-                Partner With Us
+                Donate
               </Link>
             </div>
           </nav>
@@ -168,7 +168,7 @@ export const Header: React.FC = () => {
               <Link
                 to="/"
                 className={`text-base font-medium ${
-                  isActive('/') ? 'text-blue-700' : 'text-gray-700'
+                  isActive('/') ? 'text-red-600' : 'text-gray-700'
                 }`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -177,43 +177,43 @@ export const Header: React.FC = () => {
               <Link
                 to="/about"
                 className={`text-base font-medium ${
-                  isActive('/about') ? 'text-blue-700' : 'text-gray-700'
+                  isActive('/about') ? 'text-red-600' : 'text-gray-700'
                 }`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 About Us
               </Link>
               <Link
-                to="/institutions"
+                to="/services"
                 className={`text-base font-medium ${
-                  location.pathname.startsWith('/institutions') ? 'text-blue-700' : 'text-gray-700'
+                  location.pathname.startsWith('/services') ? 'text-red-600' : 'text-gray-700'
                 }`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Institutions
+                Services
               </Link>
               <Link
-                to="/programs"
+                to="/locations"
                 className={`text-base font-medium ${
-                  isActive('/programs') ? 'text-blue-700' : 'text-gray-700'
+                  isActive('/locations') ? 'text-red-600' : 'text-gray-700'
                 }`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Programs
+                Locations
               </Link>
               <Link
-                to="/admissions"
+                to="/get-involved"
                 className={`text-base font-medium ${
-                  isActive('/admissions') ? 'text-blue-700' : 'text-gray-700'
+                  isActive('/get-involved') ? 'text-red-600' : 'text-gray-700'
                 }`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Admissions
+                Get Involved
               </Link>
               <Link
                 to="/news-events"
                 className={`text-base font-medium ${
-                  isActive('/news-events') ? 'text-blue-700' : 'text-gray-700'
+                  isActive('/news-events') ? 'text-red-600' : 'text-gray-700'
                 }`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -222,7 +222,7 @@ export const Header: React.FC = () => {
               <Link
                 to="/impact-partners"
                 className={`text-base font-medium ${
-                  isActive('/impact-partners') ? 'text-blue-700' : 'text-gray-700'
+                  isActive('/impact-partners') ? 'text-red-600' : 'text-gray-700'
                 }`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -231,7 +231,7 @@ export const Header: React.FC = () => {
               <Link
                 to="/contact"
                 className={`text-base font-medium ${
-                  isActive('/contact') ? 'text-blue-700' : 'text-gray-700'
+                  isActive('/contact') ? 'text-red-600' : 'text-gray-700'
                 }`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -240,18 +240,18 @@ export const Header: React.FC = () => {
               
               <div className="pt-4 space-y-3">
                 <Link
-                  to="/admissions"
-                  className="block bg-blue-700 text-white px-4 py-2 rounded-lg text-center font-medium"
+                  to="/get-involved"
+                  className="block bg-red-600 text-white px-4 py-2 rounded-lg text-center font-medium"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Apply Now
+                  Volunteer
                 </Link>
                 <Link
                   to="/impact-partners"
-                  className="block bg-amber-600 text-white px-4 py-2 rounded-lg text-center font-medium"
+                  className="block bg-blue-600 text-white px-4 py-2 rounded-lg text-center font-medium"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Partner With Us
+                  Donate
                 </Link>
               </div>
             </nav>

@@ -1,108 +1,108 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight, Users, Award, BookOpen, Heart, ArrowRight, Star, Play } from 'lucide-react';
+import { ChevronRight, Users, Heart, Globe, TrendingUp, ArrowRight, Star, Stethoscope, Shield, Truck, GraduationCap, Activity } from 'lucide-react';
 
 export const HomePage: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [animatedStats, setAnimatedStats] = useState({
-    institutions: 0,
-    students: 0,
-    employment: 0,
-    female: 0,
+    countries: 0,
+    patients: 0,
+    volunteers: 0,
+    clinics: 0,
     years: 0
   });
 
   const testimonials = [
     {
-      name: "Sarah Mendani",
-      role: "Graduate, Kungumanda CHW Training",
-      content: "The training I received prepared me to serve my community with both professional skills and Christian compassion. I now work as a Community Health Worker, making a real difference in rural health outcomes.",
+      name: "Dr. Maria Santos",
+      role: "Medical Mission Volunteer, Philippines",
+      content: "Serving with Foursquare Health Services has been the most rewarding experience of my medical career. We're not just treating patients - we're bringing hope and the love of Christ to communities that need it most.",
       image: "https://images.pexels.com/photos/5214413/pexels-photo-5214413.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
     },
     {
-      name: "James Kila",
-      role: "Parent & Community Leader",
-      content: "Sending my children to FourSquare schools was the best decision. They received quality education grounded in Christian values, and now they're leaders in their respective fields.",
+      name: "Pastor James Okoye",
+      role: "Community Health Coordinator, Nigeria",
+      content: "The holistic approach of combining medical care with spiritual ministry has transformed our community. Families are not only physically healed but spiritually renewed through these programs.",
       image: "https://images.pexels.com/photos/3760514/pexels-photo-3760514.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
     },
     {
-      name: "Mary Pukeni",
-      role: "Graduate, One Way Bible College",
-      content: "The theological training equipped me for ministry while the practical skills helped me start community development projects. This holistic approach transforms lives and communities.",
+      name: "Sarah Chen",
+      role: "Nurse Practitioner, Cambodia",
+      content: "Working in remote villages through mobile clinics has shown me the incredible impact we can have when we combine professional healthcare with compassionate ministry. Lives are being saved and souls are being touched.",
       image: "https://images.pexels.com/photos/5384537/pexels-photo-5384537.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
     }
   ];
 
-  const institutions = [
+  const services = [
     {
-      name: "Wapenamanda International Christian School",
-      level: "Prep - Grade 8",
-      description: "Quality primary education with Christian values, preparing students for academic excellence and character development.",
-      image: "https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop",
-      slug: "wapenamanda-international"
-    },
-    {
-      name: "Wapenamanda FourSquare Secondary School",
-      level: "Grades 9-12",
-      description: "Comprehensive secondary education fostering critical thinking, leadership skills, and preparation for higher education.",
-      image: "https://images.pexels.com/photos/5212338/pexels-photo-5212338.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop",
-      slug: "wapenamanda-secondary"
-    },
-    {
-      name: "Kungumanda CHW Training School",
-      level: "Healthcare Training",
-      description: "Professional training for Community Health Workers, addressing critical healthcare needs in rural communities.",
+      name: "Medical Missions",
+      description: "Short-term and long-term medical mission trips providing essential healthcare services to underserved communities worldwide.",
       image: "https://images.pexels.com/photos/5863391/pexels-photo-5863391.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop",
-      slug: "kungumanda-chw"
+      slug: "medical-missions",
+      icon: <Stethoscope className="h-6 w-6" />
     },
     {
-      name: "Kumbas Vocational Centre",
-      level: "Trade Skills",
-      description: "Hands-on vocational training in essential trades, creating pathways to employment and entrepreneurship.",
-      image: "https://images.pexels.com/photos/3862132/pexels-photo-3862132.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop",
-      slug: "kumbas-vocational"
+      name: "Community Health Programs",
+      description: "Sustainable health initiatives that train local healthcare workers and establish ongoing medical care in communities.",
+      image: "https://images.pexels.com/photos/5863389/pexels-photo-5863389.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop",
+      slug: "community-health",
+      icon: <Users className="h-6 w-6" />
     },
     {
-      name: "One Way Bible College",
-      level: "Ministry Training",
-      description: "Theological education and ministry preparation, developing servant leaders for church and community transformation.",
-      image: "https://images.pexels.com/photos/5212665/pexels-photo-5212665.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop",
-      slug: "one-way-bible"
+      name: "Emergency Response",
+      description: "Rapid deployment medical teams providing critical care during natural disasters and humanitarian crises.",
+      image: "https://images.pexels.com/photos/6303773/pexels-photo-6303773.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop",
+      slug: "emergency-response",
+      icon: <Shield className="h-6 w-6" />
+    },
+    {
+      name: "Mobile Clinics",
+      description: "Fully equipped mobile medical units bringing healthcare directly to remote and hard-to-reach communities.",
+      image: "https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop",
+      slug: "mobile-clinics",
+      icon: <Truck className="h-6 w-6" />
+    },
+    {
+      name: "Health Education & Training",
+      description: "Comprehensive training programs for local healthcare workers, community health advocates, and medical professionals.",
+      image: "https://images.pexels.com/photos/5212329/pexels-photo-5212329.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop",
+      slug: "health-education",
+      icon: <GraduationCap className="h-6 w-6" />
     }
   ];
 
   const news = [
     {
-      title: "New Healthcare Partnership Announced",
+      title: "Emergency Medical Response in Haiti",
       date: "March 15, 2024",
-      excerpt: "FourSquare Education Agency partners with PNG Health Department to expand community health worker training programs across Enga Province.",
-      image: "https://images.pexels.com/photos/5863389/pexels-photo-5863389.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop",
-      category: "Partnership"
+      excerpt: "Our emergency response team deployed to Haiti following recent natural disasters, providing critical medical care to over 2,000 affected individuals.",
+      image: "https://images.pexels.com/photos/6303773/pexels-photo-6303773.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop",
+      category: "Emergency Response"
     },
     {
-      title: "Outstanding Academic Results for 2023",
+      title: "New Mobile Clinic Program Launches in Kenya",
       date: "March 10, 2024",
-      excerpt: "Our students achieved exceptional results in national examinations, with 95% pass rates across all institutions, well above national averages.",
-      image: "https://images.pexels.com/photos/5212329/pexels-photo-5212329.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop",
-      category: "Academic Excellence"
+      excerpt: "Three new mobile medical units begin serving remote communities in Kenya, bringing essential healthcare to areas previously without medical access.",
+      image: "https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop",
+      category: "Mobile Clinics"
     },
     {
-      title: "New Vocational Training Programs Launch",
+      title: "Community Health Worker Training Graduation",
       date: "March 5, 2024",
-      excerpt: "Kumbas Vocational Centre introduces new programs in renewable energy and sustainable agriculture, responding to community needs.",
-      image: "https://images.pexels.com/photos/3862365/pexels-photo-3862365.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop",
-      category: "Programs"
+      excerpt: "45 new community health workers graduated from our training program in Guatemala, expanding local healthcare capacity in rural regions.",
+      image: "https://images.pexels.com/photos/5212329/pexels-photo-5212329.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop",
+      category: "Training"
     }
   ];
 
   // Animate statistics on mount
   useEffect(() => {
     const targetStats = {
-      institutions: 5,
-      students: 1200,
-      employment: 85,
-      female: 60,
-      years: 20
+      countries: 35,
+      patients: 250000,
+      volunteers: 1500,
+      clinics: 85,
+      years: 25
     };
 
     const duration = 2000; // 2 seconds
@@ -115,10 +115,10 @@ export const HomePage: React.FC = () => {
       const progress = step / steps;
       
       setAnimatedStats({
-        institutions: Math.round(targetStats.institutions * progress),
-        students: Math.round(targetStats.students * progress),
-        employment: Math.round(targetStats.employment * progress),
-        female: Math.round(targetStats.female * progress),
+        countries: Math.round(targetStats.countries * progress),
+        patients: Math.round(targetStats.patients * progress),
+        volunteers: Math.round(targetStats.volunteers * progress),
+        clinics: Math.round(targetStats.clinics * progress),
         years: Math.round(targetStats.years * progress)
       });
 
@@ -142,51 +142,51 @@ export const HomePage: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white overflow-hidden">
+      <section className="relative bg-gradient-to-br from-red-900 via-red-800 to-red-700 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-30"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/50 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-red-900/50 to-transparent"></div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="space-y-4">
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-                  Empowering the Next Generation Through
-                  <span className="text-amber-400"> Christ-Centered Education</span>
+                  Bringing Hope and Healing to the
+                  <span className="text-yellow-400"> World</span>
                 </h1>
-                <p className="text-xl sm:text-2xl text-blue-100 leading-relaxed">
-                  Discover our five transformative institutions shaping the future of Enga Province and beyond
+                <p className="text-xl sm:text-2xl text-red-100 leading-relaxed">
+                  Christ-centered healthcare missions serving communities worldwide through medical care, training, and compassionate ministry
                 </p>
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
-                  to="/admissions"
-                  className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 text-center"
+                  to="/get-involved"
+                  className="bg-yellow-500 hover:bg-yellow-600 text-red-900 px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 text-center"
                 >
-                  Apply Now
+                  Volunteer Today
                 </Link>
                 <Link
                   to="/impact-partners"
-                  className="border-2 border-white hover:bg-white hover:text-blue-900 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all text-center"
+                  className="border-2 border-white hover:bg-white hover:text-red-900 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all text-center"
                 >
-                  Partner With Us
+                  Support Our Mission
                 </Link>
               </div>
             </div>
             
             <div className="relative">
               <img
-                src="https://images.pexels.com/photos/5212317/pexels-photo-5212317.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop"
-                alt="Students in classroom"
+                src="https://images.pexels.com/photos/5863391/pexels-photo-5863391.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop"
+                alt="Medical mission team providing care"
                 className="rounded-lg shadow-2xl"
               />
               <div className="absolute -bottom-6 -left-6 bg-white text-gray-900 p-6 rounded-lg shadow-xl">
                 <div className="flex items-center space-x-2">
-                  <Award className="h-8 w-8 text-amber-600" />
+                  <Heart className="h-8 w-8 text-red-600" />
                   <div>
-                    <p className="font-bold text-lg">95%</p>
-                    <p className="text-sm text-gray-600">Graduate Success Rate</p>
+                    <p className="font-bold text-lg">250,000+</p>
+                    <p className="text-sm text-gray-600">Lives Touched</p>
                   </div>
                 </div>
               </div>
@@ -200,93 +200,93 @@ export const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Our Impact Across Papua New Guinea
+              Our Global Impact
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Two decades of transforming lives through quality education, healthcare training, and community development
+              Over 25 years of bringing hope and healing to communities worldwide through Christ-centered healthcare missions
             </p>
           </div>
           
           <div className="grid grid-cols-2 lg:grid-cols-5 gap-8">
             <div className="text-center">
-              <div className="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
-                <BookOpen className="h-10 w-10 text-blue-700" />
+              <div className="bg-red-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                <Globe className="h-10 w-10 text-red-600" />
               </div>
-              <p className="text-4xl font-bold text-blue-700 mb-2">{animatedStats.institutions}</p>
-              <p className="text-gray-600 font-medium">Institutions Across Education, Health & Theology</p>
+              <p className="text-4xl font-bold text-red-600 mb-2">{animatedStats.countries}</p>
+              <p className="text-gray-600 font-medium">Countries Served</p>
+            </div>
+            
+            <div className="text-center">
+              <div className="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                <Users className="h-10 w-10 text-blue-600" />
+              </div>
+              <p className="text-4xl font-bold text-blue-600 mb-2">{animatedStats.patients.toLocaleString()}+</p>
+              <p className="text-gray-600 font-medium">Patients Served</p>
             </div>
             
             <div className="text-center">
               <div className="bg-green-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
-                <Users className="h-10 w-10 text-green-700" />
+                <Heart className="h-10 w-10 text-green-600" />
               </div>
-              <p className="text-4xl font-bold text-green-700 mb-2">{animatedStats.students.toLocaleString()}+</p>
-              <p className="text-gray-600 font-medium">Students Enrolled</p>
+              <p className="text-4xl font-bold text-green-600 mb-2">{animatedStats.volunteers.toLocaleString()}+</p>
+              <p className="text-gray-600 font-medium">Medical Volunteers</p>
             </div>
             
             <div className="text-center">
-              <div className="bg-amber-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
-                <Award className="h-10 w-10 text-amber-700" />
+              <div className="bg-purple-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                <Activity className="h-10 w-10 text-purple-600" />
               </div>
-              <p className="text-4xl font-bold text-amber-700 mb-2">{animatedStats.employment}%</p>
-              <p className="text-gray-600 font-medium">Graduate Employment Rate</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="bg-pink-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
-                <Heart className="h-10 w-10 text-pink-700" />
-              </div>
-              <p className="text-4xl font-bold text-pink-700 mb-2">{animatedStats.female}%</p>
-              <p className="text-gray-600 font-medium">Female Student Participation</p>
+              <p className="text-4xl font-bold text-purple-600 mb-2">{animatedStats.clinics}</p>
+              <p className="text-gray-600 font-medium">Active Clinics</p>
             </div>
             
             <div className="text-center col-span-2 lg:col-span-1">
-              <div className="bg-purple-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
-                <Star className="h-10 w-10 text-purple-700" />
+              <div className="bg-yellow-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                <Star className="h-10 w-10 text-yellow-600" />
               </div>
-              <p className="text-4xl font-bold text-purple-700 mb-2">{animatedStats.years}+</p>
-              <p className="text-gray-600 font-medium">Years of Impact in Enga Province</p>
+              <p className="text-4xl font-bold text-yellow-600 mb-2">{animatedStats.years}+</p>
+              <p className="text-gray-600 font-medium">Years of Service</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Institutions Showcase */}
+      {/* Services Showcase */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Our Five Transformative Institutions
+              Our Healthcare Services
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From early childhood to higher education, vocational training to ministry preparation - we provide comprehensive pathways for personal and professional growth
+              Comprehensive medical missions and health programs designed to bring healing and hope to communities in need
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {institutions.map((institution, index) => (
+            {services.map((service, index) => (
               <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
                 <div className="relative overflow-hidden">
                   <img
-                    src={institution.image}
-                    alt={institution.name}
+                    src={service.image}
+                    alt={service.name}
                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute top-4 left-4 bg-blue-700 text-white px-3 py-1 rounded-full text-sm font-medium">
-                    {institution.level}
+                  <div className="absolute top-4 left-4 bg-red-600 text-white p-2 rounded-lg">
+                    {service.icon}
                   </div>
                 </div>
                 
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-700 transition-colors">
-                    {institution.name}
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-red-600 transition-colors">
+                    {service.name}
                   </h3>
                   <p className="text-gray-600 mb-4 leading-relaxed">
-                    {institution.description}
+                    {service.description}
                   </p>
                   <Link
-                    to={`/institutions/${institution.slug}`}
-                    className="inline-flex items-center text-blue-700 font-medium hover:text-blue-800 transition-colors"
+                    to={`/services/${service.slug}`}
+                    className="inline-flex items-center text-red-600 font-medium hover:text-red-700 transition-colors"
                   >
                     Learn More
                     <ChevronRight className="ml-1 h-4 w-4" />
@@ -298,10 +298,10 @@ export const HomePage: React.FC = () => {
 
           <div className="text-center mt-12">
             <Link
-              to="/institutions"
-              className="inline-flex items-center bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-800 transition-colors"
+              to="/services"
+              className="inline-flex items-center bg-red-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors"
             >
-              Explore All Institutions
+              Explore All Services
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </div>
@@ -309,14 +309,14 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-blue-900 text-white">
+      <section className="py-20 bg-red-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              Transforming Lives, Building Futures
+              Stories of Hope and Healing
             </h2>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-              Hear from our graduates, parents, and community members about the impact of FourSquare Education
+            <p className="text-xl text-red-100 max-w-3xl mx-auto">
+              Hear from our medical volunteers and community partners about the transformative power of Christ-centered healthcare
             </p>
           </div>
 
@@ -340,7 +340,7 @@ export const HomePage: React.FC = () => {
                         </blockquote>
                         <div>
                           <p className="font-semibold text-lg">{testimonial.name}</p>
-                          <p className="text-blue-200">{testimonial.role}</p>
+                          <p className="text-red-200">{testimonial.role}</p>
                         </div>
                       </div>
                     </div>
@@ -371,17 +371,17 @@ export const HomePage: React.FC = () => {
           <div className="flex justify-between items-center mb-12">
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-                Latest News & Updates
+                Latest Mission Updates
               </h2>
               <p className="text-xl text-gray-600">
-                Stay informed about our latest achievements, partnerships, and community impact
+                Stay informed about our ongoing medical missions and healthcare initiatives worldwide
               </p>
             </div>
             <Link
               to="/news-events"
-              className="hidden sm:inline-flex items-center text-blue-700 font-medium hover:text-blue-800 transition-colors"
+              className="hidden sm:inline-flex items-center text-red-600 font-medium hover:text-red-700 transition-colors"
             >
-              View All News
+              View All Updates
               <ArrowRight className="ml-1 h-4 w-4" />
             </Link>
           </div>
@@ -395,14 +395,14 @@ export const HomePage: React.FC = () => {
                     alt={article.title}
                     className="w-full h-48 object-cover"
                   />
-                  <div className="absolute top-4 left-4 bg-blue-700 text-white px-3 py-1 rounded-full text-sm font-medium">
+                  <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-medium">
                     {article.category}
                   </div>
                 </div>
                 
                 <div className="p-6">
                   <p className="text-gray-500 text-sm mb-2">{article.date}</p>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 hover:text-blue-700 transition-colors">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 hover:text-red-600 transition-colors">
                     {article.title}
                   </h3>
                   <p className="text-gray-600 leading-relaxed">
@@ -416,9 +416,9 @@ export const HomePage: React.FC = () => {
           <div className="text-center mt-8 sm:hidden">
             <Link
               to="/news-events"
-              className="inline-flex items-center text-blue-700 font-medium hover:text-blue-800 transition-colors"
+              className="inline-flex items-center text-red-600 font-medium hover:text-red-700 transition-colors"
             >
-              View All News
+              View All Updates
               <ArrowRight className="ml-1 h-4 w-4" />
             </Link>
           </div>
@@ -426,14 +426,14 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* Newsletter Signup */}
-      <section className="py-16 bg-gradient-to-r from-green-700 to-green-600 text-white">
+      <section className="py-16 bg-gradient-to-r from-blue-700 to-blue-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
               Stay Connected with Our Mission
             </h2>
-            <p className="text-xl text-green-100 mb-8">
-              Subscribe to receive updates about our programs, student achievements, and opportunities to get involved
+            <p className="text-xl text-blue-100 mb-8">
+              Subscribe to receive updates about our medical missions, volunteer opportunities, and ways to get involved
             </p>
             
             <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
@@ -444,7 +444,7 @@ export const HomePage: React.FC = () => {
               />
               <button
                 type="submit"
-                className="bg-white text-green-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+                className="bg-white text-blue-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
               >
                 Subscribe
               </button>
@@ -457,18 +457,18 @@ export const HomePage: React.FC = () => {
       <section className="py-20 bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
-            Ready to Be Part of Our Story?
+            Join Us in Bringing Hope and Healing
           </h2>
           <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            Whether you're seeking quality education for your child, looking to develop professional skills, or wanting to partner with us in transforming communities - we're here to help you take the next step.
+            Whether you're a medical professional looking to serve, a supporter wanting to make a difference, or someone seeking to partner with us - there's a place for you in our mission.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              to="/admissions"
-              className="bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors"
+              to="/get-involved"
+              className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors"
             >
-              Start Your Application
+              Volunteer With Us
             </Link>
             <Link
               to="/contact"
