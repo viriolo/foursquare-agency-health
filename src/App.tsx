@@ -5,9 +5,10 @@ import { Footer } from './components/Footer';
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { ProgramsPage } from './pages/ProgramsPage';
-import { ServiceDetailPage } from './pages/ServiceDetailPage';
+import { InstitutionDetailPage } from './pages/InstitutionDetailPage';
 import { LocationsPage } from './pages/LocationsPage';
 import { GetInvolvedPage } from './pages/GetInvolvedPage';
+import { AdmissionsPage } from './pages/AdmissionsPage';
 import { NewsEventsPage } from './pages/NewsEventsPage';
 import { ImpactPartnersPage } from './pages/ImpactPartnersPage';
 import { ContactPage } from './pages/ContactPage';
@@ -21,10 +22,11 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
-            <Route path="/services" element={<ProgramsPage />} />
-            <Route path="/services/:slug" element={<ServiceDetailPage />} />
+            <Route path="/programs" element={<ProgramsPage />} />
+            <Route path="/programs/:slug" element={<InstitutionDetailPage />} />
             <Route path="/locations" element={<LocationsPage />} />
             <Route path="/get-involved" element={<GetInvolvedPage />} />
+            <Route path="/admissions" element={<AdmissionsPage />} />
             <Route path="/news-events" element={<NewsEventsPage />} />
             <Route path="/impact-partners" element={<ImpactPartnersPage />} />
             <Route path="/contact" element={<ContactPage />} />
