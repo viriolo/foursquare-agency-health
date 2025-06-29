@@ -6,7 +6,7 @@ import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { ProgramsPage } from './pages/ProgramsPage';
 import { InstitutionDetailPage } from './pages/InstitutionDetailPage';
-import { LocationsPage } from './pages/LocationsPage';
+import { InstitutionsPage } from './pages/InstitutionsPage';
 import { GetInvolvedPage } from './pages/GetInvolvedPage';
 import { AdmissionsPage } from './pages/AdmissionsPage';
 import { NewsEventsPage } from './pages/NewsEventsPage';
@@ -24,7 +24,7 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/programs" element={<ProgramsPage />} />
             <Route path="/programs/:slug" element={<InstitutionDetailPage />} />
-            <Route path="/locations" element={<LocationsPage />} />
+            <Route path="/locations" element={<InstitutionsPage />} />
             <Route path="/get-involved" element={<GetInvolvedPage />} />
             <Route path="/admissions" element={<AdmissionsPage />} />
             <Route path="/news-events" element={<NewsEventsPage />} />
