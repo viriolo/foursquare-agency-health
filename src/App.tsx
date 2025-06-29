@@ -7,10 +7,9 @@ import { AboutPage } from './pages/AboutPage';
 import { ProgramsPage } from './pages/ProgramsPage';
 import { InstitutionDetailPage } from './pages/InstitutionDetailPage';
 import { InstitutionsPage } from './pages/InstitutionsPage';
-import { GetInvolvedPage } from './pages/GetInvolvedPage';
+import { ImpactPartnersPage } from './pages/ImpactPartnersPage';
 import { AdmissionsPage } from './pages/AdmissionsPage';
 import { NewsEventsPage } from './pages/NewsEventsPage';
-import { ImpactPartnersPage } from './pages/ImpactPartnersPage';
 import { ContactPage } from './pages/ContactPage';
 
 function App() {
@@ -22,10 +21,9 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/institutions" element={<InstitutionsPage />} />
+            <Route path="/institutions/:slug" element={<InstitutionDetailPage />} />
             <Route path="/programs" element={<ProgramsPage />} />
-            <Route path="/programs/:slug" element={<InstitutionDetailPage />} />
-            <Route path="/locations" element={<InstitutionsPage />} />
-            <Route path="/get-involved" element={<GetInvolvedPage />} />
             <Route path="/admissions" element={<AdmissionsPage />} />
             <Route path="/news-events" element={<NewsEventsPage />} />
             <Route path="/impact-partners" element={<ImpactPartnersPage />} />
