@@ -1,145 +1,176 @@
 import { useState, useEffect } from 'react';
-import { 
-  getBlogPosts, 
-  getFeaturedBlogPosts, 
-  getNewsArticles, 
-  getNewsArticlesByCategory,
-  getUrgentNewsArticles,
-  searchContent,
-  BlogPost, 
-  NewsArticle 
-} from '../lib/contentful';
+import { contentfulClient, isContentfulConfigured, BlogPost, NewsArticle } from '../lib/contentful';
 
-// Hook for fetching blog posts
-export const useBlogPosts = (limit = 10) => {
+// Fallback data for when Contentful is not configured
+const fallbackBlogPosts: BlogPost[] = [
+  {
+    sys: {
+      id: 'fallback-1',
+      createdAt: '2024-03-20T00:00:00Z',
+      updatedAt: '2024-03-20T00:00:00Z',
+    },
+    fields: {
+      title: 'New Healthcare Partnership Expands Training Opportunities',
+      slug: 'healthcare-partnership-expansion',
+      excerpt: 'FourSquare Education Agency partners with PNG Health Department to expand community health worker training programs across Enga Province.',
+      content: 'This is fallback content. Please configure Contentful to see dynamic content.',
+      author: 'Dr. Sarah Wambi',
+      publishDate: '2024-03-15T00:00:00Z',
+      category: 'Partnership',
+      featured: true,
+      tags: ['healthcare', 'partnership', 'training']
+    }
+  },
+  {
+    sys: {
+      id: 'fallback-2',
+      createdAt: '2024-03-15T00:00:00Z',
+      updatedAt: '2024-03-15T00:00:00Z',
+    },
+    fields: {
+      title: 'Outstanding Academic Results for 2023',
+      slug: 'academic-results-2023',
+      excerpt: 'Our students achieved exceptional results in national examinations, with 95% pass rates across all institutions.',
+      content: 'This is fallback content. Please configure Contentful to see dynamic content.',
+      author: 'Mary Kila',
+      publishDate: '2024-03-10T00:00:00Z',
+      category: 'Academic Excellence',
+      tags: ['academics', 'results', 'excellence']
+    }
+  }
+];
+
+const fallbackNewsArticles: NewsArticle[] = [
+  {
+    sys: {
+      id: 'news-fallback-1',
+      createdAt: '2024-03-20T00:00:00Z',
+      updatedAt: '2024-03-20T00:00:00Z',
+    },
+    fields: {
+      title: 'New Vocational Training Programs Launch',
+      slug: 'new-vocational-programs',
+      excerpt: 'Kumbas Vocational Centre introduces new programs in renewable energy and sustainable agriculture.',
+      content: 'This is fallback content. Please configure Contentful to see dynamic content.',
+      author: 'Mr. John Kila',
+      publishDate: '2024-03-05T00:00:00Z',
+      category: 'Programs',
+      location: 'Kumbas, Enga Province'
+    }
+  }
+];
+
+export const useBlogPosts = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchPosts = async () => {
+      if (!isContentfulConfigured() || !contentfulClient) {
+        // Use fallback data when Contentful is not configured
+        setPosts(fallbackBlogPosts);
+        setLoading(false);
+        return;
+      }
+
       try {
-        setLoading(true);
-        const data = await getBlogPosts(limit);
-        setPosts(data);
+        const response = await contentfulClient.getEntries({
+          content_type: 'blogPost',
+          order: '-fields.publishDate',
+        });
+        
+        setPosts(response.items as BlogPost[]);
       } catch (err) {
-        setError('Failed to fetch blog posts');
-        console.error(err);
+        console.warn('Failed to fetch blog posts from Contentful, using fallback data:', err);
+        setPosts(fallbackBlogPosts);
+        setError('Failed to load blog posts from Contentful');
       } finally {
         setLoading(false);
       }
     };
 
     fetchPosts();
-  }, [limit]);
+  }, []);
 
   return { posts, loading, error };
 };
 
-// Hook for fetching featured blog posts
-export const useFeaturedBlogPosts = (limit = 3) => {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        setLoading(true);
-        const data = await getFeaturedBlogPosts(limit);
-        setPosts(data);
-      } catch (err) {
-        setError('Failed to fetch featured blog posts');
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPosts();
-  }, [limit]);
-
-  return { posts, loading, error };
-};
-
-// Hook for fetching news articles
-export const useNewsArticles = (limit = 10) => {
+export const useNewsArticles = () => {
   const [articles, setArticles] = useState<NewsArticle[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchArticles = async () => {
+      if (!isContentfulConfigured() || !contentfulClient) {
+        // Use fallback data when Contentful is not configured
+        setArticles(fallbackNewsArticles);
+        setLoading(false);
+        return;
+      }
+
       try {
-        setLoading(true);
-        const data = await getNewsArticles(limit);
-        setArticles(data);
+        const response = await contentfulClient.getEntries({
+          content_type: 'newsArticle',
+          order: '-fields.publishDate',
+        });
+        
+        setArticles(response.items as NewsArticle[]);
       } catch (err) {
-        setError('Failed to fetch news articles');
-        console.error(err);
+        console.warn('Failed to fetch news articles from Contentful, using fallback data:', err);
+        setArticles(fallbackNewsArticles);
+        setError('Failed to load news articles from Contentful');
       } finally {
         setLoading(false);
       }
     };
 
     fetchArticles();
-  }, [limit]);
+  }, []);
 
   return { articles, loading, error };
 };
 
-// Hook for fetching news articles by category
-export const useNewsArticlesByCategory = (category: string, limit = 10) => {
-  const [articles, setArticles] = useState<NewsArticle[]>([]);
+export const useBlogPost = (slug: string) => {
+  const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchArticles = async () => {
+    const fetchPost = async () => {
+      if (!isContentfulConfigured() || !contentfulClient) {
+        // Use fallback data when Contentful is not configured
+        const fallbackPost = fallbackBlogPosts.find(p => p.fields.slug === slug);
+        setPost(fallbackPost || null);
+        setLoading(false);
+        return;
+      }
+
       try {
-        setLoading(true);
-        const data = await getNewsArticlesByCategory(category, limit);
-        setArticles(data);
+        const response = await contentfulClient.getEntries({
+          content_type: 'blogPost',
+          'fields.slug': slug,
+          limit: 1,
+        });
+        
+        if (response.items.length > 0) {
+          setPost(response.items[0] as BlogPost);
+        } else {
+          setPost(null);
+        }
       } catch (err) {
-        setError('Failed to fetch news articles by category');
-        console.error(err);
+        console.warn('Failed to fetch blog post from Contentful:', err);
+        const fallbackPost = fallbackBlogPosts.find(p => p.fields.slug === slug);
+        setPost(fallbackPost || null);
+        setError('Failed to load blog post from Contentful');
       } finally {
         setLoading(false);
       }
     };
 
-    if (category) {
-      fetchArticles();
-    }
-  }, [category, limit]);
+    fetchPost();
+  }, [slug]);
 
-  return { articles, loading, error };
-};
-
-// Hook for searching content
-export const useContentSearch = () => {
-  const [results, setResults] = useState<(BlogPost | NewsArticle)[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const search = async (query: string, limit = 20) => {
-    if (!query.trim()) {
-      setResults([]);
-      return;
-    }
-
-    try {
-      setLoading(true);
-      setError(null);
-      const data = await searchContent(query, limit);
-      setResults(data);
-    } catch (err) {
-      setError('Failed to search content');
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return { results, loading, error, search };
+  return { post, loading, error };
 };
